@@ -2,6 +2,7 @@
  * External dependencies
  */
 import { expect } from 'chai';
+import sinon from 'sinon';
 
 /**
  * Internal dependencies
@@ -57,6 +58,14 @@ describe( 'reducer', () => {
 			} );
 		} );
 		describe( 'persistence', () => {
+			var consoleStub;
+			before( () => {
+				consoleStub = sinon.stub( console, 'warn' );
+			} );
+			after( () => {
+				consoleStub.restore();
+			} );
+
 			it( 'should return a js object on SERIALIZE', () => {
 				const original = Object.freeze( {
 					2916284: {
@@ -71,7 +80,7 @@ describe( 'reducer', () => {
 					2916284: { ID: 2916284, name: 'WordPress.com Example Blog' }
 				} );
 			} );
-			it( 'it loads state on DESERIALIZE', () => {
+			it( 'it validates state on DESERIALIZE', () => {
 				const original = Object.freeze( {
 					2916284: {
 						ID: 2916284,
@@ -94,14 +103,14 @@ describe( 'reducer', () => {
 					}
 				} );
 			} );
-			it.skip( 'when state has validation errors on DESERIALIZE it returns initial state', () => {
+			it( 'when state has validation errors on DESERIALIZE it returns initial state', () => {
 				const original = Object.freeze( {
 					2916284: { name: 'WordPress.com Example Blog' }
 				} );
 				const state = items( original, { type: DESERIALIZE } );
 				expect( state ).to.eql( {} );
 			} );
-			it.skip( 'when state has validation errors on DESERIALIZE it returns initial state', () => {
+			it( 'when state has validation errors on DESERIALIZE it returns initial state', () => {
 				const original = Object.freeze( {
 					foobar: { name: 'WordPress.com Example Blog' }
 				} );

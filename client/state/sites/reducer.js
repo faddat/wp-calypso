@@ -12,6 +12,8 @@ import omit from 'lodash/object/omit';
  */
 import { plans } from './plans/reducer';
 import { SITE_RECEIVE, SERIALIZE, DESERIALIZE } from 'state/action-types';
+import schema from './schema';
+import { isValidStateWithSchema } from 'state/utils';
 
 /**
  * Tracks all known site objects, indexed by site ID.
@@ -27,15 +29,17 @@ export function items( state = {}, action ) {
 				[ action.site.ID ]: action.site
 			} );
 		case SERIALIZE:
-			// scrub _events, _maxListeners, and other misc functions
+			//TODO: find all the places where site is being decorated
+			const blackList = [ '_headers', 'fetchingSettings', 'fetchingUsers',
+				'latestSettings', '_events', '_maxListeners' ];
 			const sites = Object.keys( state ).map( ( siteID ) => {
 				let plainJSObject = pick( state[ siteID ], ( value ) => ! isFunction( value ) );
-				plainJSObject = omit( plainJSObject, [ '_events', '_maxListeners'] );
+				plainJSObject = omit( plainJSObject, blackList );
 				return plainJSObject;
 			} );
 			return indexBy( sites, 'ID' );
 		case DESERIALIZE:
-			return state;
+			return isValidStateWithSchema( state, schema ) ? state : {};
 	}
 	return state;
 }

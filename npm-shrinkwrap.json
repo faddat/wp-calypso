@@ -13327,6 +13327,25 @@
           }
         }
       }
+    },
+    "joi-browser": {
+      "version": "7.1.0",
+      "dependencies": {
+        "joi": {
+          "version": "7.2.3",
+          "dependencies": {
+            "hoek": {
+              "version": "3.0.4"
+            },
+            "topo": {
+              "version": "2.0.0"
+            },
+            "isemail": {
+              "version": "2.1.0"
+            }
+          }
+        }
+      }
     }
   }
 }
