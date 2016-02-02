@@ -99,6 +99,10 @@ module.exports = {
 		}
 
 		if ( currentUser && currentUser.site_count === 0 ) {
+			context.store.dispatch( uiActions.setSection( 'sites', {
+				hasSidebar: false
+			} ) );
+
 			renderEmptySites();
 			return analytics.pageView.record( basePath, analyticsPageTitle + ' > No Sites' );
 		}

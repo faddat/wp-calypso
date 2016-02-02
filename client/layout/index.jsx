@@ -150,7 +150,7 @@ Layout = React.createClass( {
 export default connect(
 	( state ) => {
 		const { isLoading, section, hasSidebar, chunkName } = state.ui;
-		return { 
+		return {
 			isLoading,
 			isSupportUser: isSupportUser( state ),
 			section,
