@@ -37,13 +37,11 @@ export class SyncHandler {
 	}
 
 	syncHandlerInstance( handler ) {
-		const self = this;
-
-		return function( params, wrappedResponseCallback ) {
+		return ( params, wrappedResponseCallback ) => {
 			// detect and no-sync proxy connection request
 			if ( params.metaAPI && params.metaAPI.accessAllUsersBlogs ) {
 				debug( 'skip - non-sync -proxy-handler request detected' );
-				return self.reqHandler( params, wrappedResponseCallback );
+				return this.reqHandler( params, wrappedResponseCallback );
 			}
 
 			const clonedParams = Object.assign( {}, params );
@@ -59,11 +57,11 @@ export class SyncHandler {
 			let responseSent = false;
 
 			// generate an unique resource key
-			const key = self.generateKey( params );
+			const key = this.generateKey( params );
 
 			debug( 'starting to get resource ...' );
 
-			self.retrieveRecord( key, function( err, localRecord ) {
+			this.retrieveRecord( key, ( err, localRecord ) => {
 				if ( err ) {
 					// @TODO improve error handling here
 					console.error( err );
@@ -107,7 +105,7 @@ export class SyncHandler {
 							params: clonedParams
 						};
 
-						self.storeRecord( key, storingData, storedErr => {
+						this.storeRecord( key, storingData, storedErr => {
 							if ( storedErr ) {
 								console.error( storedErr );
 								if ( ! responseSent ) {

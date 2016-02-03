@@ -878,6 +878,11 @@ MenuData.prototype.fetchDefaultMenu = function() {
 			return;
 		}
 
+		if ( data.__syncResponse ) {
+			debug( 'ignoring second response here ...' );
+			return;
+		}
+
 		// Bail if site has changed in the meantime
 		if ( requestedSiteID !== this.siteID ) {
 			return;
