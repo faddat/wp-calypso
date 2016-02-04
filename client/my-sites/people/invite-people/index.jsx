@@ -97,6 +97,7 @@ export default React.createClass( {
 						<FormFieldset>
 							<FormLabel>{ this.translate( 'Usernames or Emails' ) }</FormLabel>
 							<TokenField
+								isBorderless
 								value={ this.state.usernamesOrEmails }
 								onChange={ this.onTokensChange } />
 							<FormSettingExplanation>
