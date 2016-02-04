@@ -27,8 +27,7 @@ import {
 	setEditingMode,
 	startEditingNew,
 	startEditingExisting,
-	EDITING_MODE_EXISTING,
-	EDITING_MODE_NEW
+	EDITING_MODES
 } from 'state/ui/editor/post/actions';
 
 function getPostID( context ) {
@@ -137,7 +136,7 @@ module.exports = {
 				titleActions.setTitle( titleStrings.edit, { siteID: site.ID } );
 				analytics.pageView.record( '/' + postType + '/:blogid/:postid', titleStrings.ga + ' > Edit' );
 
-				context.store.dispatch( setEditingMode( EDITING_MODE_EXISTING, titleStrings.edit, { siteID: site.ID } ) );
+				context.store.dispatch( setEditingMode( EDITING_MODES.EXISTING, titleStrings.edit, { siteID: site.ID } ) );
 				context.store.dispatch( startEditingExisting( site, postID ) );
 			} else {
 				let postOptions = { type: postType };
@@ -157,7 +156,7 @@ module.exports = {
 				titleActions.setTitle( titleStrings.new, { siteID: site.ID } );
 				analytics.pageView.record( '/' + postType, titleStrings.ga + ' > New' );
 
-				context.store.dispatch( setEditingMode( EDITING_MODE_NEW, titleStrings.new, { siteID: site.ID } ) );
+				context.store.dispatch( setEditingMode( EDITING_MODES.NEW, titleStrings.new, { siteID: site.ID } ) );
 				context.store.dispatch( startEditingNew( site, postOptions ) );
 			}
 		}

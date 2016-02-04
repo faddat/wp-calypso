@@ -61,5 +61,7 @@ export function removeFeaturedImage() {
 	return { type: 'TODO' };
 }
 
-export const EDITING_MODE_EXISTING = 'EXISTING';
-export const EDITING_MODE_NEW = 'NEW';
+export const EDITING_MODES = {
+	EXISTING: 'EDITING_MODE_EXISTING',
+	NEW: 'EDITING_MODE_NEW'
+};
