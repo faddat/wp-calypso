@@ -1,12 +1,13 @@
 /**
  * External dependencies
  */
-var React = require( 'react' );
-
+const React = require( 'react' );
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /**
  * Internal dependencies
  */
-var Gravatar = require( 'components/gravatar' ),
+const Gravatar = require( 'components/gravatar' ),
 	user = require( 'lib/user' )(),
 	AuthorSelector = require( 'components/author-selector' ),
 	PostActions = require( 'lib/posts/actions' ),
@@ -14,12 +15,9 @@ var Gravatar = require( 'components/gravatar' ),
 	sites = require( 'lib/sites-list' )(),
 	config = require( 'config' ),
 	stats = require( 'lib/posts/stats' );
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { setAuthor } from 'state/ui/editor/post/actions';
 
-var EditorAuthor = React.createClass( {
+const EditorAuthor = React.createClass( {
 
 	render: function() {
 		// if it's not a new post and we are still loading

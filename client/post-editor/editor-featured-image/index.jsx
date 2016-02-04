@@ -1,20 +1,14 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import {
-	setFeaturedImage,
-	removeFeaturedImage
-} from 'state/ui/editor/post/actions';
-
 /**
  * External dependencies
  */
-var React = require( 'react' ),
+const React = require( 'react' ),
 	classnames = require( 'classnames' );
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /**
  * Internal dependencies
  */
-var MediaLibrarySelectedData = require( 'components/data/media-library-selected-data' ),
+const MediaLibrarySelectedData = require( 'components/data/media-library-selected-data' ),
 	EditorMediaModal = require( 'post-editor/media-modal' ),
 	EditorDrawerWell = require( 'post-editor/editor-drawer-well' ),
 	PostActions = require( 'lib/posts/actions' ),
@@ -22,8 +16,12 @@ var MediaLibrarySelectedData = require( 'components/data/media-library-selected-
 	stats = require( 'lib/posts/stats' ),
 	AccordionSection = require( 'components/accordion/section' ),
 	EditorFeaturedImagePreviewContainer = require( './preview-container' );
+import {
+	setFeaturedImage,
+	removeFeaturedImage
+} from 'state/ui/editor/post/actions';
 
-var EditorFeaturedImage = React.createClass( {
+const EditorFeaturedImage = React.createClass( {
 
 	propTypes: {
 		maxWidth: React.PropTypes.number,

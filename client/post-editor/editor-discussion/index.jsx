@@ -1,20 +1,18 @@
 /**
  * External dependencies
  */
-var React = require( 'react' ),
+const React = require( 'react' ),
 	pick = require( 'lodash/object/pick' );
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /**
  * Internal dependencies
  */
-var EditorFieldset = require( 'post-editor/editor-fieldset' ),
+const EditorFieldset = require( 'post-editor/editor-fieldset' ),
 	FormCheckbox = require( 'components/forms/form-checkbox' ),
 	PostActions = require( 'lib/posts/actions' ),
 	InfoPopover = require( 'components/info-popover' ),
 	stats = require( 'lib/posts/stats' );
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { setDiscussionSettings } from 'state/ui/editor/post/actions';
 
 function booleanToStatus( bool ) {

@@ -1,14 +1,15 @@
 /**
  * External dependencies
  */
-var React = require( 'react' ),
+const React = require( 'react' ),
 	find = require( 'lodash/collection/find' ),
 	config = require( 'config' );
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /**
  * Internal dependencies
  */
-var Accordion = require( 'components/accordion' ),
+const Accordion = require( 'components/accordion' ),
 	AccordionSection = require( 'components/accordion/section' ),
 	Gridicon = require( 'components/gridicon' ),
 	TaxonomiesAccordion = require( 'post-editor/editor-taxonomies/accordion' ),
@@ -36,12 +37,9 @@ var Accordion = require( 'components/accordion' ),
 	user = require( 'lib/user' )(),
 	userSettings = require( 'lib/user-settings' ),
 	AppPromo = require( 'components/app-promo' );
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { setExcerpt } from 'state/ui/editor/post/actions';
 
-var EditorDrawer = React.createClass( {
+const EditorDrawer = React.createClass( {
 
 	propTypes: {
 		site: React.PropTypes.object,

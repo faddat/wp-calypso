@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-var React = require( 'react' ),
+const React = require( 'react' ),
 	noop = require( 'lodash/utility/noop' );
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 /**
  * Internal dependencies
  */
-var actions = require( 'lib/posts/actions' ),
+const actions = require( 'lib/posts/actions' ),
 	Button = require( 'components/button' ),
 	FormToggle = require( 'components/forms/form-toggle/compact' ),
 	Revisions = require( 'post-editor/editor-revisions' ),
@@ -22,13 +22,12 @@ var actions = require( 'lib/posts/actions' ),
 	postScheduleUtils = require( 'components/post-schedule/utils' ),
 	siteUtils = require( 'lib/site/utils' ),
 	stats = require( 'lib/posts/stats' );
-
 import {
 	toggleStickyStatus,
 	togglePendingStatus
 } from 'state/ui/editor/post/actions'
 
-var EditPostStatus = React.createClass( {
+const EditPostStatus = React.createClass( {
 	propTypes: {
 		post: React.PropTypes.object,
 		savedPost: React.PropTypes.object,

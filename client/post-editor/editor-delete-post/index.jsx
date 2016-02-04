@@ -3,6 +3,8 @@
  */
 import React from 'react';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 /**
  * Internal dependencies
@@ -12,9 +14,6 @@ import accept from 'lib/accept';
 import utils from 'lib/posts/utils';
 import Gridicon from 'components/gridicon';
 import Tooltip from 'components/tooltip';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { trashPost } from 'state/ui/editor/post/actions';
 
 const EditorDeletePost = React.createClass( {

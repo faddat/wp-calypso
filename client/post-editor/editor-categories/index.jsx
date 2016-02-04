@@ -1,24 +1,22 @@
 /**
  * External dependencies
  */
-var React = require( 'react' ),
+const React = require( 'react' ),
 	without = require( 'lodash/array/without' ),
 	clone = require( 'lodash/lang/clone' ),
 	classNames = require( 'classnames' ),
 	debug = require( 'debug' )( 'calypso:post-editor:editor-categories' );
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 /**
  * Internal dependencies
  */
-var CategorySelector = require( 'my-sites/category-selector' ),
+const CategorySelector = require( 'my-sites/category-selector' ),
 	AddCategory = require( 'my-sites/category-selector/add-category' ),
 	CategoryList = require( 'components/data/category-list-data' ),
 	postActions = require( 'lib/posts/actions' ),
 	siteUtils = require( 'lib/site/utils' ),
 	stats = require( 'lib/posts/stats' );
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { setCategories } from 'state/ui/editor/post/actions';
 
 const EditorCategories = React.createClass( {
