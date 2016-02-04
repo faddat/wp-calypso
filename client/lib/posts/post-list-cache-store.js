@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import config from 'config';
 var intersection = require( 'lodash/array/intersection' );
 
 /**
@@ -34,6 +35,10 @@ function getCacheKey( options ) {
 }
 
 function get( query ) {
+	if ( config.isEnabled( 'sync-handler' ) ) {
+		return console.warn( 'synchandler is enabled. Disable post-list-cache-store' );
+	}
+
 	var key = getCacheKey( query );
 
 	if ( _cache[ key ] && ! isStale( _cache[ key ] ) && ! _cache[ key ].dirty ) {
