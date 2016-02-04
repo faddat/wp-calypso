@@ -24,9 +24,14 @@ const EditorCategories = React.createClass( {
 
 	propTypes: {
 		site: React.PropTypes.object,
-		post: React.PropTypes.object
+		post: React.PropTypes.object,
+		setCategories: React.PropTypes.func
 	},
-
+	getDefaultProps: function() {
+		return {
+			setCategories: () => {}
+		};
+	},
 	getInitialState: function() {
 		return {
 			searchTerm: null

@@ -22,7 +22,14 @@ const EditorDeletePost = React.createClass( {
 	propTypes: {
 		site: React.PropTypes.object,
 		post: React.PropTypes.object,
-		onTrashingPost: React.PropTypes.func
+		onTrashingPost: React.PropTypes.func,
+		trashPost: React.PropTypes.func
+	},
+
+	getDefaultProps: function() {
+		return {
+			trashPost: () => {}
+		};
 	},
 
 	getInitialState: function() {

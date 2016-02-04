@@ -29,12 +29,21 @@ import {
 
 const EditPostStatus = React.createClass( {
 	propTypes: {
+		togglePendingStatus: React.PropTypes.func,
+		toggleStickyStatus: React.PropTypes.func,
 		post: React.PropTypes.object,
 		savedPost: React.PropTypes.object,
 		type: React.PropTypes.string,
 		onSave: React.PropTypes.func,
 		onDateChange: React.PropTypes.func,
 		site: React.PropTypes.object
+	},
+
+	getDefaultProps: function() {
+		return {
+			togglePendingStatus: () => {},
+			toggleStickyStatus: () => {}
+		};
 	},
 
 	getInitialState: function() {

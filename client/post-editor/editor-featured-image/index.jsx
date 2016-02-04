@@ -26,13 +26,17 @@ const EditorFeaturedImage = React.createClass( {
 	propTypes: {
 		maxWidth: React.PropTypes.number,
 		site: React.PropTypes.object,
-		post: React.PropTypes.object
+		post: React.PropTypes.object,
+		setFeaturedImage: React.PropTypes.func,
+		removeFeaturedImage: React.PropTypes.func
 	},
 
 	getDefaultProps: function() {
 		return {
 			editable: false,
-			maxWidth: 450
+			maxWidth: 450,
+			setFeaturedImage: () => {},
+			removeFeaturedImage: () => {}
 		};
 	},
 

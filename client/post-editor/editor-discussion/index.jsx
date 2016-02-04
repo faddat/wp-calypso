@@ -29,12 +29,14 @@ const EditorDiscussion = React.createClass( {
 	propTypes: {
 		isNew: React.PropTypes.bool,
 		post: React.PropTypes.object,
-		site: React.PropTypes.object
+		site: React.PropTypes.object,
+		setDiscussionSettings: React.PropTypes.func
 	},
 
 	getDefaultProps: function() {
 		return {
-			isNew: false
+			isNew: false,
+			setDiscussionSettings: () => {}
 		};
 	},
 
