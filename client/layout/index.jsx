@@ -41,7 +41,7 @@ if ( config.isEnabled( 'keyboard-shortcuts' ) ) {
 }
 
 if ( config.isEnabled( 'support-user' ) ) {
-	SupportUser = require( 'components/support-user' );
+	SupportUser = require( 'support/support-user' );
 }
 
 Layout = React.createClass( {
@@ -131,7 +131,7 @@ Layout = React.createClass( {
 			<div className={ sectionClass }>
 				{ config.isEnabled( 'keyboard-shortcuts' ) ? <KeyboardShortcutsMenu /> : null }
 				{ this.renderMasterbar() }
-				{ config.isEnabled( 'support-user' ) ? <SupportUser /> : null }
+				{ config.isEnabled( 'support-user' ) && <SupportUser /> }
 				<div className={ loadingClass } ><PulsingDot active={ this.props.isLoading } chunkName={ this.props.chunkName } /></div>
 				{ this.props.isOffline && <OfflineStatus /> }
 				<div id="content" className="wp-content">
@@ -156,7 +156,7 @@ Layout = React.createClass( {
 export default connect(
 	( state ) => {
 		const { isLoading, section, hasSidebar, chunkName } = state.ui;
-		return { 
+		return {
 			isLoading,
 			isSupportUser: isSupportUser( state ),
 			section,
