@@ -2,6 +2,7 @@
  * External dependencies
  */
 var page = require( 'page' ),
+	ReactDom = require( 'react-dom' ),
 	transform = require( 'lodash/object/transform' );
 
 /**
@@ -22,8 +23,8 @@ const routing = {
 	],
 	middlewares: [
 		{ value: ( context, next ) => {
-			context.store.dispatch( setSection( 'design', { hasSidebar: !! user, isFullScreen: false } ) );
-			next();
+			context.store.dispatch( setSection( 'design', { hasSidebar: !! user.get(), isFullScreen: false } ) );
+			setTimeout( next, 1 );
 		}, enableLoggedOut: true },
 		{ value: controller.navigation, enableLoggedOut: false },
 		{ value: controller.siteSelection, enableLoggedOut: false },
@@ -45,9 +46,10 @@ module.exports = function() {
 		const { routes, middlewares } = getRouting( user.get() );
 		routes.forEach( route => page( route, ...middlewares ) );
 
-		page( '/themes/:slug', ( context, next ) => {
+		page( '/themes/:slug/:site_id?', ( context, next ) => {
 			context.store.dispatch( setSection( 'themes', { hasSidebar: false, isFullScreen: true } ) );
+			ReactDom.unmountComponentAtNode( document.getElementById( 'secondary' ) );
 			next();
-		}, controller.navigation, controller.siteSelection, themesController.details );
+		}, themesController.details );
 	}
 };
