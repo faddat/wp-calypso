@@ -1,4 +1,8 @@
+/**
+ * External dependencies
+ */
 import debugFactory from 'debug';
+
 const debug = debugFactory( 'calypso:ui:editor:post:actions' );
 
 export function setEditingMode( mode, modeTitle, site ) {
