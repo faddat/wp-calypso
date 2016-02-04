@@ -17,7 +17,7 @@ var Gravatar = require( 'components/gravatar' ),
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeAuthor } from 'state/ui/editor/post/actions';
+import { setAuthor } from 'state/ui/editor/post/actions';
 
 var EditorAuthor = React.createClass( {
 
@@ -61,7 +61,7 @@ var EditorAuthor = React.createClass( {
 		stats.recordEvent( 'Changed Author' );
 		// TODO: REDUX - remove flux actions when whole post-editor is reduxified
 		PostActions.edit( { author: author } );
-		this.props.changeAuthor( author );
+		this.props.setAuthor( author );
 	},
 
 	userCanAssignAuthor: function() {
@@ -81,5 +81,5 @@ var EditorAuthor = React.createClass( {
 
 export default connect(
 	null,
-	dispatch => bindActionCreators( { changeAuthor }, dispatch )
+	dispatch => bindActionCreators( { setAuthor }, dispatch )
 )( EditorAuthor );

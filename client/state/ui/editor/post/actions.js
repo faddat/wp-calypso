@@ -26,8 +26,8 @@ export function togglePendingStatus( currentStatus ) {
 	return { type: 'TODO' };
 }
 
-export function changeAuthor( newAuthor ) {
-	debug( 'changeAuthor', newAuthor );
+export function setAuthor( newAuthor ) {
+	debug( 'setAuthor', newAuthor );
 	return { type: 'TODO' };
 }
 
