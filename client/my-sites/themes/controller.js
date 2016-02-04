@@ -53,7 +53,6 @@ var controller = {
 		}
 
 		analytics.pageView.record( basePath, analyticsPageTitle );
-		context.store.dispatch( setSection( 'design', { hasSidebar: false, fullScreen: false } ) );
 		ReactDom.render(
 			React.createElement( ReduxProvider, { store: context.store },
 				React.createElement( Head, { title, tier: tier || 'all' },
@@ -76,7 +75,7 @@ var controller = {
 	},
 
 	details: function( context ) {
-		context.store.dispatch( setSection( 'themes', { hasSidebar: false, fullScreen: true } ) );
+		context.store.dispatch( setSection( 'themes', { hasSidebar: false, isFullScreen: true } ) );
 		const user = getCurrentUser( context.store.getState() );
 		const Head = user
 			? require( 'layout/head' )

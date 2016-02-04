@@ -10,6 +10,7 @@ var page = require( 'page' ),
 var config = require( 'config' ),
 	user = require( 'lib/user' )(),
 	controller = require( 'my-sites/controller' ),
+	setSection = require( 'state/ui/actions' ).setSection,
 	themesController = require( './controller' );
 
 const routing = {
@@ -20,6 +21,10 @@ const routing = {
 		{ value: '/design', enableLoggedOut: true },
 	],
 	middlewares: [
+		{ value: ( context, next ) => {
+			context.store.dispatch( setSection( 'design', { hasSidebar: !! user, isFullScreen: false } ) );
+			next();
+		}, enableLoggedOut: true },
 		{ value: controller.navigation, enableLoggedOut: false },
 		{ value: controller.siteSelection, enableLoggedOut: false },
 		{ value: themesController.themes, enableLoggedOut: true },
@@ -40,6 +45,9 @@ module.exports = function() {
 		const { routes, middlewares } = getRouting( user.get() );
 		routes.forEach( route => page( route, ...middlewares ) );
 
-		page( '/themes/:slug', themesController.details );
+		page( '/themes/:slug', ( context, next ) => {
+			context.store.dispatch( setSection( 'themes', { hasSidebar: false, isFullScreen: true } ) );
+			next();
+		}, controller.navigation, controller.siteSelection, themesController.details );
 	}
 };
