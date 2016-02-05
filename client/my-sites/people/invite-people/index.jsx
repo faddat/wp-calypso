@@ -37,7 +37,7 @@ export default React.createClass( {
 	resetState() {
 		return ( {
 			usernamesOrEmails: [],
-			role: '',
+			role: 'follower',
 			message: '',
 			response: false,
 			sendingInvites: false
@@ -50,6 +50,8 @@ export default React.createClass( {
 
 	submitForm( event ) {
 		event.preventDefault();
+
+		console.log( this.state );
 
 		this.setState( { sendingInvites: true } );
 		sendInvites( this.props.site.ID, this.state.usernamesOrEmails, this.state.role, this.state.message, ( error, data ) => {
@@ -114,6 +116,7 @@ export default React.createClass( {
 							siteId={ this.props.site.ID }
 							valueLink={ this.linkState( 'role' ) }
 							disabled={ this.state.sendingInvites }
+							appendRoles={ { follower: {} } } // adds a pseudo-role of follower
 							explanation={ this.renderRoleExplanation() }/>
 
 						<FormFieldset>
