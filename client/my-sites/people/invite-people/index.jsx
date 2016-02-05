@@ -20,6 +20,7 @@ import { sendInvites } from 'lib/invites/actions';
 import Card from 'components/card';
 import Main from 'components/main';
 import HeaderCake from 'components/header-cake';
+import { createInviteValidation } from 'lib/invites/actions';
 
 export default React.createClass( {
 	displayName: 'InvitePeople',
@@ -46,6 +47,11 @@ export default React.createClass( {
 
 	onTokensChange( tokens ) {
 		this.setState( { usernamesOrEmails: tokens } );
+	},
+
+	validate() {
+		let { siteId, usernamesOrEmails, role } = this.state;
+		createInviteValidation( siteId, usernamesOrEmails, role, (error,data)=>{console.log(error,data) } );
 	},
 
 	submitForm( event ) {
@@ -93,7 +99,7 @@ export default React.createClass( {
 			<Main>
 				<HeaderCake isCompact onClick={ this.goBack }/>
 				<Card>
-					<form onSubmit={ this.submitForm } >
+					<form onSubmit={ this.submitForm } onChange={ this.validate }>
 						<FormFieldset>
 							<FormLabel>{ this.translate( 'Usernames or Emails' ) }</FormLabel>
 							<TokenField
@@ -114,7 +120,8 @@ export default React.createClass( {
 							siteId={ this.props.site.ID }
 							valueLink={ this.linkState( 'role' ) }
 							disabled={ this.state.sendingInvites }
-							explanation={ this.renderRoleExplanation() }/>
+							explanation={ this.renderRoleExplanation() }
+							/>
 
 						<FormFieldset>
 							<FormLabel htmlFor="message">{ this.translate( 'Custom Message' ) }</FormLabel>
