@@ -34,34 +34,31 @@ export default React.createClass( {
 	},
 
 	renderCountPanel() {
-		const length = this.props.value.length;
-
+		let length = this.props.value.length;
 		if ( ! length && this.props.countPlaceholderLength ) {
 			length = this.props.placeholder.length;
 		}
 
+		let panelText = this.translate( '%d character', '%d characters', {
+			context: 'Input length',
+			args: [ length ],
+			count: length
+		} );
+
 		if ( this.props.showRemainingCharacters && this.props.acceptableLength ) {
-			return ( <div className="counted-textarea__count-panel">
-				{ this.translate( '%d character remaining', '%d characters remaining', {
-					context: 'Input length',
-					args: [ this.props.acceptableLength - length ],
-					count: this.props.acceptableLength - length
-				} ) }
-					{ this.props.children }
-				</div>
-			);
-		} else {
-			return (
-				<div className="counted-textarea__count-panel">
-					{ this.translate( '%d character', '%d characters', {
-						context: 'Input length',
-						args: [ length ],
-						count: length
-					} ) }
-					{ this.props.children }
-				</div>
-			);
+			panelText = this.translate( '%d character remaining', '%d characters remaining', {
+				context: 'Input length',
+				args: [ this.props.acceptableLength - length ],
+				count: this.props.acceptableLength - length
+			} );
 		}
+
+		return (
+			<div className="counted-textarea__count-panel">
+				{ panelText }
+				{ this.props.children }
+			</div>
+		);
 	},
 
 	render() {
