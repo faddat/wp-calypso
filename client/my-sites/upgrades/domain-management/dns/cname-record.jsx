@@ -50,7 +50,7 @@ const CnameRecord = React.createClass( {
 						name="data"
 						onChange={ this.props.onChange( 'data' ) }
 						value={ this.props.fieldValues.data }
-						placeholder={ this.translate( 'e.g. mydomain.com', { context: 'CName DNS Record', textOnly: true } ) } />
+						placeholder={ this.translate( 'e.g. example.com', { context: 'CName DNS Record', textOnly: true } ) } />
 				</FormFieldset>
 			</div>
 		);

@@ -101,7 +101,7 @@ const SrvRecord = React.createClass( {
 						name="target"
 						onChange={ this.props.onChange( 'target' ) }
 						value={ target }
-						placeholder={ this.translate( 'e.g. sip.myprovider.com', { context: 'SRV Dns Record', textOnly: true } ) } />
+						placeholder={ this.translate( 'e.g. sip.your-provider.com', { context: 'SRV Dns Record', textOnly: true } ) } />
 				</FormFieldset>
 
 				<FormFieldset>
