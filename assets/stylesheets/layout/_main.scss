@@ -76,6 +76,43 @@ textarea,
 	font-family: $sans;
 }
 
+/*rtl:ignore*/
+body.rtl,
+.rtl button,
+.rtl input,
+.rtl select,
+.rtl textarea,
+.rtl .button,
+.rtl #footer,
+.rtl #footer a.readmore {
+	font-family: $sans-rtl;
+}
+
+/*rtl:ignore*/
+:lang(he) body.rtl,
+:lang(he) .rtl button,
+:lang(he) .rtl input,
+:lang(he) .rtl select,
+:lang(he) .rtl textarea,
+:lang(he) .rtl .button,
+:lang(he) .rtl #footer,
+:lang(he) .rtl #footer a.readmore {
+	font-family: $sans;
+}
+
+/*rtl:ignore*/
+.rtl {
+	.gridicon {
+		&.gridicons-chevron-left,
+		&.gridicons-chevron-right,
+		&.gridicons-arrow-left,
+		&.gridicons-arrow-right {
+			transform: scaleX( -1 );
+		}
+
+	}
+}
+
 .notifications {
 	display: inherit;
 }

@@ -328,3 +328,22 @@
 	font-size: 12px;
 	padding-left: 48px;
 }
+
+
+/* RTL */
+.rtl .posts__list {
+	//smaller font, let's use Tahoma
+	.post__quote {
+		font-family: $sans-rtl;
+	}
+	//we can use the default sans for titles
+	.post__title {
+		font-family: $sans;
+	}
+}
+
+:lang(he) .rtl .posts__list {
+	.post__quote {
+		font-family: $sans;
+	}
+}
