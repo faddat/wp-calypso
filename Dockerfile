@@ -1,4 +1,4 @@
-FROM	debian:wheezy
+FROM	armhfbuild/debian
 
 MAINTAINER Automattic
 
@@ -14,14 +14,8 @@ RUN     apt-get -y update && apt-get -y install \
           make \
           build-essential
 
-ENV NODE_VERSION 4.2.3
-
-RUN     wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz && \
-          tar -zxf node-v$NODE_VERSION-linux-x64.tar.gz -C /usr/local && \
-          ln -sf node-v$NODE_VERSION-linux-x64 /usr/local/node && \
-          ln -sf /usr/local/node/bin/npm /usr/local/bin/ && \
-          ln -sf /usr/local/node/bin/node /usr/local/bin/ && \
-          rm node-v$NODE_VERSION-linux-x64.tar.gz
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
+RUN apt-get install -y nodejs
 
 ENV     NODE_PATH /calypso/server:/calypso/client
 
