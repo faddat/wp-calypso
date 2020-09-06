@@ -59,7 +59,7 @@
     "lodash": "3.10.1",
     "lru-cache": "4.0.0",
     "lunr": "0.5.7",
-    "marked": "0.3.5",
+    "marked": "0.3.18",
     "moment": "2.10.6",
     "moment-timezone": "^0.4.0",
     "morgan": "1.2.0",
